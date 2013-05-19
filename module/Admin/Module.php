@@ -4,6 +4,11 @@ namespace Admin;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
+
+use Common\Model\Table\PostTable;
+use Common\Model\Post;
 
 class Module
 {
@@ -29,4 +34,24 @@ class Module
 				),
 		);
 	}
+	
+	public function getServiceConfig()
+	{
+		return array(
+				'factories' => array(
+						'Common\Model\Table\PostTable' =>  function($sm) {
+							$tableGateway = $sm->get('PostTableGateway');
+							$table = new PostTable($tableGateway);
+							return $table;
+						 },
+					    'PostTableGateway' => function ($sm) {
+							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+							$resultSetPrototype = new ResultSet();
+							$resultSetPrototype->setArrayObjectPrototype(new Post());
+							return new TableGateway('wp_posts', $dbAdapter, null, $resultSetPrototype);
+						},
+				),
+		);
+	}
+	
 }
