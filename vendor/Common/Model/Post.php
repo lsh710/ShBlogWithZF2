@@ -2,29 +2,29 @@
 namespace Common\Model;
 
 class Post extends BaseModelObject{
-	protected $id;
-	protected $post_author;
-	protected $post_date;
-	protected $post_date_gmt;
-	protected $post_content;
-	protected $post_title;
-	protected $post_excerpt;
-	protected $post_status;
-	protected $comment_status;
-	protected $ping_status;
-	protected $post_password;
-	protected $post_name;
-	protected $to_ping;
-	protected $pinged;
-	protected $post_modified;
-	protected $post_modified_gmt;
-	protected $post_content_filtered;
-	protected $post_parent;
-	protected $guid;
-	protected $menu_order;
-	protected $post_type;
-	protected $post_mime_type;
-	protected $comment_count;
+	public $id;
+	public $post_author;
+	public $post_date;
+	public $post_date_gmt;
+	public $post_content;
+	public $post_title;
+	public $post_excerpt;
+	public $post_status;
+	public $comment_status;
+	public $ping_status;
+	public $post_password;
+	public $post_name;
+	public $to_ping;
+	public $pinged;
+	public $post_modified;
+	public $post_modified_gmt;
+	public $post_content_filtered;
+	public $post_parent;
+	public $guid;
+	public $menu_order;
+	public $post_type;
+	public $post_mime_type;
+	public $comment_count;
 	/**
 	 * @return the $id
 	 */
