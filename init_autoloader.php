@@ -16,6 +16,8 @@
  * most users, however, feel free to configure autoloading however you'd like.
  */
 
+defined('PROJECT_ROOT_PATH') || define('PROJECT_ROOT_PATH',__DIR__.DIRECTORY_SEPARATOR);
+
 // Composer autoloading
 if (file_exists('vendor/autoload.php')) {
     $loader = include 'vendor/autoload.php';
@@ -40,7 +42,8 @@ if ($zf2Path) {
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
             	'namespaces' => array(
-            		'Common' => __DIR__ . '/vendor/Common',
+			'Common' => __DIR__ . '/vendor/Common',
+			'PHPQRCode' =>__DIR__.'/vendor/PHPQRCode'
             	),
             )
         ));
