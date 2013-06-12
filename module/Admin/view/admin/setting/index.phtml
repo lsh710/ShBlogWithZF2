@@ -83,8 +83,14 @@ position: absolute;
 right: 10px;
 top: 10px;
 cursor: pointer;
+background: url(<?php echo $this->basePath();?>/images/close_btn_bg.png) no-repeat;
+text-indent: -9999px;
+outline: none;
 }
 
+.c_list_msg_pop .btn_close:hover {
+background: url(<?php echo $this->basePath();?>/images/close_btn_bg_hover.png) no-repeat;
+}
 .menu_item_nofun {
 color: #7b7b7b;
 cursor: default;
@@ -134,7 +140,7 @@ border: none;
 				</div>
 				<div id="scanImg_foot_" style="overflow-y: auto; width: 300px; padding-top: 3px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); display: none; height: auto;">
 				</div>
-				<a class="btn_close" id='scanImg_btn_close' onmousedown="return false;">X</a>
+				<a class="btn_close" id='scanImg_btn_close' onmousedown="return false;"></a>
 			</div>
 		</div>
 	</div>
