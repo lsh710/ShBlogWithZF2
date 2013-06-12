@@ -6,13 +6,32 @@ use PHPQRCode\QRimage;
 use PHPQRCode\Constants;
 use PHPQRCode\QRtools;
 
+
+$QR_BASEDIR = PROJECT_ROOT_PATH.'vendor/PHPQRCode'.DIRECTORY_SEPARATOR;
+define('QR_CACHEABLE', true);                                                               // use cache - more disk reads but less CPU power, masks and format templates are stored there
+define('QR_CACHE_DIR', PROJECT_ROOT_PATH.'vendor/'.'cache'.DIRECTORY_SEPARATOR);  // used when QR_CACHEABLE === true
+define('QR_LOG_DIR', PROJECT_ROOT_PATH);                                // default error logs dir
+
+define('QR_FIND_BEST_MASK', true);                                                          // if true, estimates best mask (spec. default, but extremally slow; set to false to significant performance boost but (propably) worst quality code
+define('QR_FIND_FROM_RANDOM', false);                                                       // if false, checks all masks available, otherwise value tells count of masks need to be checked, mask id are got randomly
+define('QR_DEFAULT_MASK', 2);                                                               // when QR_FIND_BEST_MASK === false
+
+define('QR_PNG_MAXIMUM_SIZE',  1024);
+
+
+// Supported output formats
+
+define('QR_FORMAT_TEXT', 0);
+define('QR_FORMAT_PNG',  1);
+
+
 class QRCodeUtil extends QRcode{
 
-    public static function png($text, $outfile = false, $level = Constants::QR_ECLEVEL_L, $size = 3, $margin = 4, $saveandprint=false)
+    public static function pngWithLogo($text,$logo_path, $outfile = false, $level = Constants::QR_ECLEVEL_L, $size = 3, $margin = 4, $saveandprint=false)
     {
         $enc = YunPanQRencode::factory($level, $size, $margin);
         //print_r($enc);exit;
-        return $enc->encodePNGWithLogo($text,PROJECT_ROOT_PATH.'public/images/avatar.jpg', $outfile, $saveandprint=false);
+        return $enc->encodePNGWithLogo($text,$logo_path, $outfile, $saveandprint=false);
     }
 }
 
@@ -96,25 +115,6 @@ class YunPanQRimage extends QRimage{
     public static function memoryPNG($frame, $filename = false, $pixelPerPoint = 4, $outerFrame = 4,$saveandprint=FALSE)
     {
         return parent::image($frame, $pixelPerPoint, $outerFrame);
-
-	/*
-        $image = parent::image($frame, $pixelPerPoint, $outerFrame);
-
-        if ($filename === false) {
-            Header("Content-type: image/png");
-            ImagePng($image);
-        } else {
-            if($saveandprint===TRUE){
-                ImagePng($image, $filename);
-                header("Content-type: image/png");
-                ImagePng($image);
-            }else{
-                ImagePng($image, $filename);
-            }
-        }
-
-        ImageDestroy($image);
-	*/
     }
 
 }
