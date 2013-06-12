@@ -6,7 +6,6 @@ use PHPQRCode\QRcode;
 use Common\Util\QRCodeUtil;
 
 $QR_BASEDIR = PROJECT_ROOT_PATH.'vendor/PHPQRCode'.DIRECTORY_SEPARATOR;
-
 define('QR_CACHEABLE', true);                                                               // use cache - more disk reads but less CPU power, masks and format templates are stored there
 define('QR_CACHE_DIR', PROJECT_ROOT_PATH.'vendor/'.'cache'.DIRECTORY_SEPARATOR);  // used when QR_CACHEABLE === true
 define('QR_LOG_DIR', PROJECT_ROOT_PATH);                                // default error logs dir
