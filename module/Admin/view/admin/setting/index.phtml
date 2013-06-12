@@ -1,18 +1,157 @@
-<!DOCTYPE html><html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>360云盘 - 我的云盘</title>
-<script>var G_start_time = new Date;</script>
-<!--[if (lt IE 8.0)]><link type="text/css" rel="stylesheet" href="http://c27.yunpan.360.cn/resource/css/my.src.css?v=144b7262.css" /><![endif]-->
-<!--[if (!IE)|(gte IE 8.0)]><!-->
-<link type="text/css" rel="stylesheet" href="http://c27.yunpan.360.cn/resource/css/my.src_datauri.css?v=f52df799.css" />
-<!--<![endif]-->
-<script type="text/javascript" src="http://c27.yunpan.360.cn/resource/js/components/1141.js?v=447542b3.js"></script>
+
+<style>
+body {
+	color: #000;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+body, td, input, button, select {
+font-size: 13px;
+line-height: 1.2;
+font-family: 'lucida Grande',arial,sans-serif;
+}
+
+.yunpan_panel_shadow {
+border-radius: 5px;
+}
+.rounded5 {
+-moz-border-radius: 5px;
+-khtml-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+}
+.c_arrow, .c_arrowR {
+position: absolute;
+width: 11px;
+height: 22px;
+top: 30px;
+overflow: hidden;
+font-size: 0px;
+z-index: 2;
+}
+.c_arrow .c_arrow_d {
+border-width: 11px 11px 11px 0;
+border-color: transparent #aaa transparent #aaa;
+_border-color: tomato #C8C8C8;
+_filter: chroma(color=tomato);
+}
+.c_arrow .c_arrow_d, .c_arrow .c_arrow_u, .c_arrowR .c_arrow_d, .c_arrowR .c_arrow_u {
+width: 0px;
+height: 0px;
+position: absolute;
+border-style: solid;
+}
+
+.c_arrow .c_arrow_u {
+border-width: 10px 10px 10px 0;
+border-color: transparent #fff transparent #fff;
+left: 1px;
+top: 1px;
+_border-color: tomato white;
+_filter: chroma(color=tomato);
+}
+.c_arrow .c_arrow_d, .c_arrow .c_arrow_u, .c_arrowR .c_arrow_d, .c_arrowR .c_arrow_u {
+width: 0px;
+height: 0px;
+position: absolute;
+border-style: solid;
+}
+
+.menu_bd {
+background: #fff;
+padding: 4px 0;
+border: 1px solid #a0a0a0;
+border-radius: 3px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.txtflow, .tf {
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+
+.c_list_msg_pop .btn_close {
+height: 18px;
+width: 18px;
+border-radius: 2px;
+display: block;
+position: absolute;
+right: 10px;
+top: 10px;
+cursor: pointer;
+}
+
+.menu_item_nofun {
+color: #7b7b7b;
+cursor: default;
+}
+
+.menu_item, .menu_item_high, .menu_item_nofun {
+padding: 0 14px 0 16px;
+white-space: nowrap;
+text-overflow: ellipsis;
+cursor: pointer;
+}
+
+img {
+border: none;
+}
+
+</style>
 </head>
 
+<body >
 
-<body>
-   <img src='<?php echo $this->basePath();?>/admin/setting/qrcode' />
+<img src='<?php echo $this->basePath();?>/images/qrcode-icon.png' id='qrcode-icon-btn' style='position: absolute; left: 198px; top: 134px;cursor: pointer;'/>
+
+<div id="scanImg_panel" class="yunpan_panel_shadow rounded5" style="display:none;z-index: 1121; position: absolute; left: 223px; top: 10px;">
+	<div class="c_arrow" style="left:-10px;top:119px;">
+		<div class="c_arrow_d">
+		</div>
+		<div class="c_arrow_u">
+		</div>
+	</div>
+	<div style="margin:0pt;" class="c_list_msg_pop">
+		<div>
+			<div class="menu_bd ui_menu_bd">
+				<div id="scanImg_menuall_" style="overflow-y: auto; width: 300px; height: auto;" class="txtflow">
+					<div id="scanImg_menuitem_" itemid="" class="menu_item_nofun" style="height:auto;line-height:auto;padding:0;" title="" onclick=";">
+						<div style="width:300px;height:280px;padding-top:10px;">
+							<div style="text-align:center;">
+								<img id="scanImg_twodcode" style="width:250px;height:250px;" src="<?php echo $this->basePath();?>/admin/setting/qrcode">
+							</div>
+							<div style="margin-top:-5px;">
+								<p style="margin:0;text-align:center;padding:5px 0;">
+									Scan and download file to your phone.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="scanImg_foot_" style="overflow-y: auto; width: 300px; padding-top: 3px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); display: none; height: auto;">
+				</div>
+				<a class="btn_close" id='scanImg_btn_close' onmousedown="return false;">X</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src='http://s0.qhimg.com/lib/qwrap/115.js' ></script>
+<script>
+Dom.ready(function()
+{
+	W('#qrcode-icon-btn').on('click',function(){
+			W('#scanImg_panel').fadeToggle();
+	});
+	W('#scanImg_btn_close').on('click',function(){
+			W('#scanImg_panel').fadeOut();
+	});
+});
+</script>
+
 </body>
 </html>
