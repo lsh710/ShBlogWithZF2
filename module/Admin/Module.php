@@ -18,18 +18,18 @@ class Module
 		$moduleRouteListener = new ModuleRouteListener();
 		$moduleRouteListener->attach($eventManager);
 		$e->getApplication()->getEventManager()->attach('render', array($this, 'registerJsonStrategy'), 100);
-	    $e->getApplication()->getEventManager()->getSharedManager()->attach(__NAMESPACE__, 'dispatch', function($e) {
-            $controller= $e->getTarget();
-            $controller->layout('layout/'.__NAMESPACE__);
-        }, 100);
+		$e->getApplication()->getEventManager()->getSharedManager()->attach(__NAMESPACE__, 'dispatch', function($e) {
+				$controller= $e->getTarget();
+				$controller->layout('layout/'.__NAMESPACE__);
+		}, 100);
 	    
 	}
 
 	public function getConfig()
 	{
 		//echo __NAMESPACE__.' Module read config';
-    	//$e = new \Exception();
-    	//print_r($e->getTraceAsString());
+		//$e = new \Exception();
+		//print_r($e->getTraceAsString());
 		return include __DIR__ . '/config/module.config.php';
 	}
 

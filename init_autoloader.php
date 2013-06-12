@@ -1,11 +1,5 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+
 
 /**
  * This autoloading setup is really more complicated than it needs to be for most
@@ -15,6 +9,8 @@
  * the use of composer completely optional. This setup should work fine for
  * most users, however, feel free to configure autoloading however you'd like.
  */
+
+defined('PROJECT_ROOT_PATH') || define('PROJECT_ROOT_PATH',__DIR__.DIRECTORY_SEPARATOR);
 
 // Composer autoloading
 if (file_exists('vendor/autoload.php')) {
@@ -40,7 +36,8 @@ if ($zf2Path) {
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
             	'namespaces' => array(
-            		'Common' => __DIR__ . '/vendor/Common',
+			'Common' => __DIR__ . '/vendor/Common',
+			'PHPQRCode' =>__DIR__.'/vendor/PHPQRCode'
             	),
             )
         ));
