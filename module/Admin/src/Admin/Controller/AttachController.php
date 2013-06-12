@@ -3,7 +3,7 @@ namespace Admin\Controller;
 
 use Zend\View\Model\ViewModel;
 
-class AttachController extends BaseController
+class AttachController extends AdminBaseController
 {
 	public function indexAction()
 	{

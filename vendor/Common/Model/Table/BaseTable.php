@@ -21,8 +21,11 @@ class BaseTable{
         return $this->tableGateway->select();
 	}
 	
-// 	public function query($option=null, $start=-1, $limit=0){
-		
-// 	}
+ 	public function queryWithLimit($selectCallback, $offset=0, $limit=0){
+ 		$select = $selectCallback($this->tableGateway->getSql()->select());
+ 		$select->limit($limit);
+ 		$select->offset($offset);
+		return $this->tableGateway->selectWith($select);
+ 	}
 	
 }

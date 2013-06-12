@@ -10,7 +10,7 @@ namespace Admin\Controller;
 
 use Zend\View\Model\ViewModel;
 
-class IndexController extends BaseController
+class IndexController extends AdminBaseController
 {
     public function indexAction() 
     {

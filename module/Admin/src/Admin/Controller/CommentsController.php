@@ -3,7 +3,7 @@ namespace Admin\Controller;
 
 use Zend\View\Model\ViewModel;
 
-class CommentsController extends BaseController
+class CommentsController extends AdminBaseController
 {
 	public function indexAction()
 	{
