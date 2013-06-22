@@ -43,4 +43,30 @@ class Module
             ),
         );
     }
+    public function getServiceConfig()
+    {
+	  return array('factories'=>array(
+            'MemcachedService'=>function($sm){
+					$cache  = new \Zend\Cache\Storage\Adapter\Memcached($sm->get('MemcachedOptions'));
+					$plugin = \Zend\Cache\StorageFactory::pluginFactory('exception_handler', array(
+					    'throw_exceptions' => true,
+					));
+					$cache->addPlugin($plugin);
+                    return $cache;
+            },
+            'MemcachedOptions'=>function($sm){
+//print_r($sm->get('config'));exit;
+                return new \Zend\Cache\Storage\Adapter\MemcachedOptions(array(
+                            'ttl'           => 60 * 60 * 24 * 7, // 1 week
+                            'namespace'     => 'sh_blog_mc',
+                            'key_pattern'   => null,
+                            'readable'      => true,
+                            'writable'      => true,
+                            'servers'       => $sm->get('config')['memcached']['servers'],
+                ));
+            }
+        )
+	  );
+    }	
+
 }

@@ -13,7 +13,10 @@
 
 return array(
     'db' => array(
-        'username' => 'username_root',
+        'username' => 'root',
         'password' => 'root',
+    ),
+    'memcached'=>array(
+        'servers'=>array(array('localhost',11211,10)),
     ),
 );
